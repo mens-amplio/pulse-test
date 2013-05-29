@@ -30,15 +30,10 @@ def interpolate(c1, c2, step, step_cnt):
     if step_cnt < 2: step_cnt = 2
     step = constrain(step, 0, step_cnt-1)
     fraction = float(step)/(step_cnt-1)
-    return tuple( [ linear_interpolate(c1, c2, i, fraction) for i in range(n) ] )
+    return tuple( [ linear_interpolate(c1[i], c2[i], fraction) for i in range(n) ] )
     
-# Returns a linear mixture of corresponding items from two tuples given by the
-# index argument. The fraction argument is the weighting of the 2nd tuple
-# in a [0-1] range
-def linear_interpolate(one, two, index, fraction):
+# Returns a linear mixture of two values. The fraction argument is the 
+# weighting of the end value in a [0-1] range
+def linear_interpolate(start, end, fraction):
     fraction = constrain(fraction, 0, 1)
-    
-    start = one[index]
-    end = two[index]
-    rval = start + (end - start)*fraction
-    return rval
+    return start + (end - start)*fraction
