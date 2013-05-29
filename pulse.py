@@ -21,9 +21,12 @@
 import math
 import time
 from LedStrip_WS2801 import LedStrip_WS2801
+import colorutils
 
 # Modifiable parameters
-color = [ 0, 100, 0 ]
+color = ( 0, 255, 0 )
+color2 = ( 0, 0, 255 )
+steps = 20 #how many steps to cycle through when moving between the 2 colors
 delay = 0.5 #seconds between pulse onsets
 step = 0.4 #raising this raises the speed. 0.1-0.7 is a good range.
 dscale = .65 #raising this makes the pulse narrower. 0.3-1 is a good range.
@@ -31,7 +34,7 @@ leds = 6 #strip length
 
 # RGB ordering of strip. 0=r, 1=g, 2=b
 order = [ 1, 2, 0 ] 
-
+    
 def antialisedPoint(ledStrip, color, step, dscale, sleep = 0.01):
     rr = color[order[0]]
     gg = color[order[1]]
@@ -46,7 +49,14 @@ def antialisedPoint(ledStrip, color, step, dscale, sleep = 0.01):
         time.sleep(sleep)
 
 ledStrip = LedStrip_WS2801("/dev/spidev0.0", leds)
+colors = colorutils.interpolated_list(color, color2, steps)
+
+#append a reversed copy of the list, omitting the 1st and last elements, so it cycles back and forth
+colors.extend( colors[::-1][1:-2] ) 
+
 while True:
-    antialisedPoint(ledStrip, color, step, dscale)
-    time.sleep(delay)
+    for c in colors:
+        antialisedPoint(ledStrip, c, step, dscale)
+        time.sleep(delay)
+
 
