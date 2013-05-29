@@ -26,7 +26,7 @@ import colorutils
 # Modifiable parameters
 color = ( 0, 255, 0 )
 color2 = ( 0, 0, 255 )
-steps = 20 #how many steps to cycle through when moving between the 2 colors
+steps = 15 #how many steps to cycle through when moving between the 2 colors
 delay = 0.5 #seconds between pulse onsets
 step = 0.4 #raising this raises the speed. 0.1-0.7 is a good range.
 dscale = .65 #raising this makes the pulse narrower. 0.3-1 is a good range.
