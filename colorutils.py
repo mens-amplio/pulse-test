@@ -1,5 +1,14 @@
 import colorsys
 
+# Gamma corrected color values from 0-255
+gamma = bytearray(256)
+for i in range(256):
+    gamma[i] = int(pow(float(i) / 255.0, 2.5) * 255 + 0.5)
+
+# Returns a gamma corrected list of color tuples
+def gamma_correct(colors):
+    return [ tuple([ gamma[int(i)] for i in c ]) for c in colors ]
+
 # Returns val constrained to the range [min_val, max_val]
 def constrain( val, min_val, max_val ):
     if val < min_val: val = min_val

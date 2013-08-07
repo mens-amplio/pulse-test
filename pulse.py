@@ -53,6 +53,7 @@ colors = colorutils.interpolated_list(color, color2, steps)
 
 #append a reversed copy of the list, omitting the 1st and last elements, so it cycles back and forth
 colors.extend( colors[::-1][1:-2] ) 
+colors = colorutils.gamma_correct(colors)
 
 while True:
     for c in colors:
