@@ -25,12 +25,12 @@ import colorutils
 
 # Modifiable parameters
 color = ( 0, 255, 0 )
-color2 = ( 0, 0, 255 )
-steps = 15 #how many steps to cycle through when moving between the 2 colors
+color2 = ( 255, 255, 0 )
+steps = 5 #how many steps to cycle through when moving between the 2 colors
 delay = 0.5 #seconds between pulse onsets
-step = 0.4 #raising this raises the speed. 0.1-0.7 is a good range.
-dscale = .65 #raising this makes the pulse narrower. 0.3-1 is a good range.
-leds = 6 #strip length
+step = 0.1 #raising this raises the speed. 0.1-0.7 is a good range.
+dscale = .2 #raising this makes the pulse narrower. 0.3-1 is a good range.
+leds = 39 #strip length
 
 # RGB ordering of strip. 0=r, 1=g, 2=b
 order = [ 1, 2, 0 ] 
